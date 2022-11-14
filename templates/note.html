@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="note">
+        <h2>{{ note.title }}</h2>
+        <p>{{ note.body }}</p>
+    </div>
+    <a href="/delete_note/{{ note.id }}" method="POST">Delete this note</a>
+
+{% endblock %}

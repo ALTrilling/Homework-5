@@ -1,0 +1,6 @@
+secret.py
+push.sh
+venv/
+notes
+__pycache__
+database.db

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block body %}
+<h1> Hello {{ user.username }}!</h1>
+<h1> Your password hash is {{ user.password_hash }}</h1>
+{% if notes %}
+    <ul>
+    {% for note in notes %}
+        <li>
+            <div class="note">
+                <h2><a href="note/{{ note.id }}">{{ note.title }}</a></h2>
+                <p>{{ note.body | truncate(20)}}</p>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You haven't written any notes yet.</p>
+{% endif %}
+<h1>Write a note</h1>
+<form action="/create_note" method="POST">
+    <input type="text" name="title" placeholder="note title">
+    <br>
+    <textarea row="5" cols="50" placeholder="note body" name="body"></textarea>
+    <br>
+    <button type="submit">Submit</button>
+    <br>
+</form>
+<br><br>
+<h1 style="font-size: 20px;" class="text-danger">Change your username. You cannot change your password</h1>
+<form action="/change_username" method="POST">
+    <input type="text" name="username" placeholder="new username">
+    <br>
+    <button type="submit">Update</button>
+    <br>
+</form>
+
+<p>This doesn't really fit with the application but here is the moon phase using the wttr.in api</p>
+<h1 id="moon_phase"></h1>
+<a href="/logout">Log out</a>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+// make a fetch request to https://wttr.in/Moon?format=%m
+axios.get('https://wttr.in/Moon?format=%m')
+    .then(res => {
+        document.getElementById('moon_phase').innerHTML = res.data;
+    });
+</script>
+{% endblock %}
