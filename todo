@@ -1,4 +1,0 @@
-validate email using sendgrid api
-maybe do something with the secret key
-https://stackoverflow.com/questions/34902378/where-do-i-get-secret-key-for-flask
-https://stackoverflow.com/questions/22463939/demystify-flask-app-secret-key
